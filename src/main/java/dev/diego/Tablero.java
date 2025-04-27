@@ -103,8 +103,8 @@ public class Tablero {
         return RESET;
     }
 
-    public boolean esNumeroValido(int fila, int columna) {
-        return (fila >= 0 && fila < dimensiones) && (columna >= 0 && columna < dimensiones);
+    public boolean esNumeroValido(int fila, int columna, int minimo) {
+        return (fila >= minimo && fila < dimensiones) && (columna >= minimo && columna < dimensiones);
     }
 
     /**
@@ -116,9 +116,9 @@ public class Tablero {
      * @return true si las coordenadas son válidas y la carta está oculta; false en
      *         caso contrario.
      */
-    public boolean validarCoordenada(int fila, int columna) {
+    public boolean validarCoordenada(int fila, int columna, int minimo) {
         boolean numeroValido = true;
-        if (!esNumeroValido(fila, columna)) {
+        if (!esNumeroValido(fila, columna, minimo)) {
             System.out.println("Las coordenadas deben estar entre 1 y 4.");
             numeroValido = false;
         } else if(!Arrays.equals(recogerCarta(fila, columna), getDisenoOculto())) {

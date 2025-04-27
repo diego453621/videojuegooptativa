@@ -143,7 +143,7 @@ public class ExtremeMemoryV1_DiegoLuengo {
                     tableroOculto.mostrarTablero();
                 }
 
-                int[] filaColumna2 = pedirCordenadas(tableroOculto, scanner);
+                int[] filaColumna2 = pedirCordenadasSinGuardar(tableroOculto, scanner);
                 if (filaColumna2 != null) {
                     revelarCarta(tableroOculto, tablero, filaColumna2, COLOR_AMARILLO);
                     tableroOculto.mostrarTablero();
@@ -153,8 +153,6 @@ public class ExtremeMemoryV1_DiegoLuengo {
 
                     tableroOculto.mostrarTablero();
                     System.out.println("Intentos restantes: " + partida.getMaxIntentos());
-                } else {
-                    partidaGuardada = true;
                 }
             } else {
                 partidaGuardada = true;
@@ -296,10 +294,27 @@ public class ExtremeMemoryV1_DiegoLuengo {
                 }
             }
             if (filaColumna != null) {
-                if (!tableroOculto.validarCoordenada(filaColumna[0], filaColumna[1])) {
+                if (!tableroOculto.validarCoordenada(filaColumna[0], filaColumna[1], -1)) {
                     datosCorrectos = false;
                 }
             }
+        } while (!datosCorrectos);
+        return filaColumna;
+    }
+
+    private static int[] pedirCordenadasSinGuardar(Tablero tableroOculto, Scanner scanner) {
+        int[] filaColumna = { 0, 1 };
+        boolean datosCorrectos = true;
+        do {
+            datosCorrectos = true;
+            System.out.println("Introduce unas coordenadas (fila) (columna) entre 1 y 4:");
+            filaColumna[0] = Herramientas.pedirNumeroEntero(scanner) - 1;
+            filaColumna[1] = Herramientas.pedirNumeroEntero(scanner) - 1;
+
+            if (!tableroOculto.validarCoordenada(filaColumna[0], filaColumna[1], 0)) {
+                datosCorrectos = false;
+            }
+
         } while (!datosCorrectos);
         return filaColumna;
     }
