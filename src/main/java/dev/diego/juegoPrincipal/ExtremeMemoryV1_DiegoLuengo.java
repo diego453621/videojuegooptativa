@@ -18,6 +18,17 @@ import dev.diego.Perfil;
 import dev.diego.Configuracion;
 
 public class ExtremeMemoryV1_DiegoLuengo {
+
+    /**
+     * Muestra las dos cartas especificadas en el tablero oculto con el color
+     * especificado.
+     * 
+     * @param tableroOculto Tablero oculto que se va a mostrar
+     * @param tablero       Tablero que contiene las cartas
+     * @param filaColumna1  Cordenadas de la primera carta
+     * @param filaColumna2  Cordenadas de la segunda carta
+     * @param color         Color que se va a asignar a las cartas
+     */
     private static void cambiarDosCartas(Tablero tablero, Tablero tableroOculto, int[] filaColumna1, int[] filaColumna2,
             String color) {
         revelarCarta(tableroOculto, tablero, filaColumna1, color);

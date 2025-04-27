@@ -47,7 +47,7 @@ public class PartidasFicheros {
         // ------------------------CARGAR-PERFIL------------------------
         for (Perfil perfil : perfiles) {
             List<String> datos = new ArrayList<>();
-            File carpetaPerfil = new File("./src/VideoJuego/Saves/", perfil.getNombre());
+            File carpetaPerfil = new File("./Saves/", perfil.getNombre());
             File archivoPartidas = new File(carpetaPerfil, "partidas.txt");
             File carpetaPartidas = new File(carpetaPerfil, "/Partidas");
             try (Scanner lector = new Scanner(archivoPartidas)) {
@@ -94,13 +94,12 @@ public class PartidasFicheros {
 
         try (Scanner lector = new Scanner(archivoListaPartidas)) {
             boolean existe = false;
-            do  {
+            while (lector.hasNextLine() && !existe) {
                 String linea = lector.nextLine();
                 if (linea.contains(fechaFormateada)) {
                     existe = true;
                 }
-            } while (lector.hasNextLine() && !existe);
-            lector.close();
+            }
             if (!existe) {
                 crearArchivoPartida(archivoPartida, archivoListaPartidas, fechaFormateada);
             }

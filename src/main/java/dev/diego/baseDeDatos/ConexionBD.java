@@ -4,11 +4,31 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Clase que establece la conexión con la base de datos MySQL.
+ * 
+ * @author Diego Luengo
+ */
 public class ConexionBD {
-    private static final String URL = "jdbc:mysql://localhost:3306/extremememory";
-    private static final String USUARIO = "root";
-    private static final String CLAVE = "781Machado.#@"; // pon aquí tu contraseña si tienes
+    /**
+     * URL de la base de datos MySQL.
+     */
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/extremememory";
+    /**
+     * Direccion URL de la base de datos MySQL.
+     */
+    private static final String USUARIO = "videojuego";
+    /**
+     * Contraseña de acceso a la base de datos.
+     */
+    private static final String CLAVE = "1234"; // pon aquí tu contraseña si tienes
 
+    /**
+     * Establishes and returns a connection to the database.
+     *
+     * @return A Connection object to the database.
+     * @throws SQLException If there is an error while attempting to connect.
+     */
     public static Connection obtenerConexion() throws SQLException {
         return DriverManager.getConnection(URL, USUARIO, CLAVE);
     }

@@ -10,7 +10,13 @@ import dev.diego.Herramientas;
 import dev.diego.Partida;
 import dev.diego.Perfil;
 
+/**
+ * Clase que gestiona las partidas en la base de datos.
+ * 
+ * @author Diego Luengo
+ */
 public class PartidasBD {
+
     /**
      * Inserta una partida en la base de datos.
      * 
@@ -63,6 +69,13 @@ public class PartidasBD {
         }
     }
 
+    /**
+     * Comprueba si una partida existe en la base de datos.
+     * 
+     * @param partida La partida a comprobar.
+     * @param perfil  El perfil al que pertenece la partida.
+     * @return true si la partida existe, false en caso contrario.
+     */
     public static boolean existePartida(Partida partida, Perfil perfil) {
         String sql = "SELECT COUNT(*) FROM partidas WHERE id = ? AND perfil_id = ?";
         boolean partidaExiste = false;
@@ -120,6 +133,12 @@ public class PartidasBD {
         return partida;
     }
 
+    /**
+     * Carga todas las partidas de la base de datos en la lista de perfiles
+     * proporcionada.
+     * 
+     * @param perfiles La lista de perfiles a cargar.
+     */
     public static void cargarPartidas(List<Perfil> perfiles) {
         String sql = "SELECT * FROM partidas";
 
@@ -149,6 +168,11 @@ public class PartidasBD {
         }
     }
 
+    /**
+     * Lista todas las partidas de un perfil activo en la base de datos.
+     * 
+     * @return Una lista de partidas del perfil activo.
+     */
     public static List<Partida> listarPartidas() {
         String sql = "SELECT * FROM partidas WHERE perfil_id = ?";
         List<Partida> listaPartidas = new ArrayList<>();
@@ -178,6 +202,13 @@ public class PartidasBD {
         return listaPartidas;
     }
 
+    /**
+     * Lista las partidas y permite al usuario seleccionar una para cargarla.
+     * 
+     * @param scanner Scanner para leer la entrada del usuario.
+     * @return La partida seleccionada por el usuario, o null si no hay partidas
+     *         disponibles.
+     */
     public static Partida listarYCargarPartida(Scanner scanner) {
         // Listar las partidas y obtener la lista
         List<Partida> listaPartidas = listarPartidas();

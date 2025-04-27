@@ -35,7 +35,7 @@ public class PerfilesFicheros {
                     System.out.println("Perfil eliminado");
 
                     DatosFicheros.borrarCarpetas(perfiles,
-                            new File("./src/VideoJuego/Saves/" + nombrePerfil.toUpperCase()));
+                            new File("./Saves/" + nombrePerfil.toUpperCase()));
 
                     GestionDeDatos.setPerfilActivo(perfiles.get(0));
 
@@ -92,12 +92,12 @@ public class PerfilesFicheros {
                 perfiles.add(new Perfil(nombre.toUpperCase()));
                 System.out.println("Perfil creado " + nombre);
 
-                try (PrintWriter writer = new PrintWriter("./src/VideoJuego/Saves/perfiles.txt")) {
+                try (PrintWriter writer = new PrintWriter("./Saves/perfiles.txt")) {
                     for (Perfil perfil : perfiles) {
                         writer.println(perfil.toString());
                     }
                     System.out.println("Perfiles guardados en perfiles.txt");
-                    File carpetaPerfil = new File("./src/VideoJuego/Saves/" + nombre.toUpperCase());
+                    File carpetaPerfil = new File("./Saves/" + nombre.toUpperCase());
                     File archivoPartidas = new File(carpetaPerfil, "partidas.txt");
                     if (!carpetaPerfil.exists()) {
                         carpetaPerfil.mkdirs();
@@ -105,7 +105,7 @@ public class PerfilesFicheros {
                     if (!archivoPartidas.exists()) {
                         archivoPartidas.createNewFile();
                     }
-                    File carpetaPartidas = new File("./src/VideoJuego/Saves/", nombre.toUpperCase() + "/Partidas");
+                    File carpetaPartidas = new File("./Saves/", nombre.toUpperCase() + "/Partidas");
                     if (!carpetaPartidas.exists()) {
                         carpetaPartidas.mkdir();
                     }

@@ -10,12 +10,12 @@ public class Configuracion {
      * Numero de filas y columnas del tablero.
      */
     private static int dimensiones = 4;
-    
+
     /**
      * Dificultad del juego, 1 para facil y 2 para dificil.
      */
     private static int dificultad = 1;
-    
+
     /**
      * Numero maximo de intentos permitidos en una partida.
      */
@@ -30,11 +30,11 @@ public class Configuracion {
         return dimensiones;
     }
 
-/**
- * Establece el número de filas y columnas del tablero.
- *
- * @param dimensiones El nuevo número de filas y columnas del tablero.
- */
+    /**
+     * Establece el número de filas y columnas del tablero.
+     *
+     * @param dimensiones El nuevo número de filas y columnas del tablero.
+     */
 
     public static void setDimensiones(int dimensiones) {
         Configuracion.dimensiones = dimensiones;
@@ -53,7 +53,7 @@ public class Configuracion {
      * Establece la dificultad del juego.
      * 
      * @param dificultad La nueva dificultad del juego, 1 para facil y 2 para
-     *            dificil.
+     *                   dificil.
      */
     public static void setDificultad(int dificultad) {
         Configuracion.dificultad = dificultad;
@@ -72,12 +72,11 @@ public class Configuracion {
      * Establece el número máximo de intentos permitidos en una partida.
      *
      * @param maxIntentos El nuevo número máximo de intentos permitidos en una
-     *            partida.
+     *                    partida.
      */
     public static void setMaxIntentos(int maxIntentos) {
         Configuracion.maxIntentos = maxIntentos;
     }
-
 
     /**
      * Permite configurar el juego, permite elegir:
@@ -126,7 +125,8 @@ public class Configuracion {
                 // elegidas
 
                 dificultad = Herramientas.pedirNumeroEntero(scanner,
-                        "Elige la dificultad (1)Facil (2)Dificil, Esto afecta a si se muestra la carta elegida o no", 1, 2);
+                        "Elige la dificultad (1)Facil (2)Dificil, Esto afecta a si se muestra la carta elegida o no", 1,
+                        2);
                 break;
 
             case 3:

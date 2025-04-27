@@ -171,7 +171,6 @@ public class Tablero {
                     tablero[j][j2][i] = diseno[i];
                 }
                 Collections.shuffle(disenos);
-                System.out.println(j2);
             }
         }
     }

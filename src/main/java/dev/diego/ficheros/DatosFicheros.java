@@ -10,8 +10,21 @@ import java.util.Scanner;
 
 import dev.diego.Perfil;
 
+/**
+ * Clase que contiene los metodos para leer y escribir los datos del juego en
+ * archivos. Estos datos se guardan en la carpeta "Saves" y se dividen en dos
+ * carpetas: "Perfiles" y "Partidas". La carpeta "Perfiles" contiene una lista
+ * de
+ * perfiles en un archivo de texto llamado "perfiles.txt" y cada perfil tiene su
+ * propia carpeta con el nombre del perfil en la que se guardan las partidas y
+ * los
+ * datos del perfil. La carpeta "Partidas" contiene los archivos de texto de las
+ * partidas guardadas del juego.
+ * 
+ * @author Diego Luengo
+ */
 public class DatosFicheros {
-        /**
+    /**
      * Borra todas las carpetas y archivos relacionados con un perfil del juego.
      * 
      * @param perfiles     La lista de perfiles actuales del juego.
@@ -34,7 +47,7 @@ public class DatosFicheros {
      * @param nombrePerfil El nombre del perfil a borrar.
      */
     public static void borrarCarpetas(List<Perfil> perfiles, File directorioUsuario) {
-        try (FileWriter writer = new FileWriter("./src/VideoJuego/Saves/perfiles.txt")) {
+        try (FileWriter writer = new FileWriter("./Saves/perfiles.txt")) {
             for (Perfil p : perfiles) {
                 writer.write(p.toString() + "\n");
             }
@@ -47,17 +60,29 @@ public class DatosFicheros {
         }
     }
 
-    private static void borrarSubDirectorios(File directory) {
-        if (directory.isDirectory()) {
-            for (File file : directory.listFiles()) {
+    /**
+     * Borra todos los archivos y subdirectorios de un directorio.
+     * 
+     * @param directory El directorio a borrar.
+     */
+    private static void borrarSubDirectorios(File directorio) {
+        if (directorio.isDirectory()) {
+            for (File file : directorio.listFiles()) {
                 borrarSubDirectorios(file);
             }
         }
-        directory.delete();
+        directorio.delete();
     }
 
-    //-----------------CARGAR JUEGO AL INICIAR------------------
+    // -----------------CARGAR JUEGO AL INICIAR------------------
 
+    /**
+     * Crea un archivo de perfiles vacio, si no existe, o reemplaza su contenido
+     * con el perfil por defecto.
+     * 
+     * @param perfiles La lista de perfiles actuales del juego.
+     * @param archivo  El archivo de perfiles.
+     */
     private static void archivoVacio(List<Perfil> perfiles, File archivo) {
         try (PrintWriter escritor = new PrintWriter(archivo)) {
             if (archivo.createNewFile()) {
@@ -65,7 +90,7 @@ public class DatosFicheros {
             }
             perfiles.add(new Perfil("DEFAULT"));
             escritor.println(perfiles.get(0).toString());
-            File carpetaPerfil = new File("./src/VideoJuego/Saves/", perfiles.get(0).getNombre());
+            File carpetaPerfil = new File("./Saves/", perfiles.get(0).getNombre());
             File archivoPartidas = new File(carpetaPerfil, "partidas.txt");
             if (!carpetaPerfil.exists()) {
                 carpetaPerfil.mkdirs();
@@ -81,7 +106,13 @@ public class DatosFicheros {
         }
     }
 
-    private static void cargarPerfilesAFichero(List<Perfil> perfiles, File archivo){
+    /**
+     * Lee el archivo de perfiles y carga los perfiles en la lista de perfiles.
+     * 
+     * @param perfiles La lista de perfiles actuales del juego.
+     * @param archivo  El archivo de perfiles.
+     */
+    private static void cargarPerfilesAFichero(List<Perfil> perfiles, File archivo) {
         try (Scanner lector = new Scanner(archivo)) {
             while (lector.hasNextLine()) {
                 String linea = lector.nextLine();
@@ -93,13 +124,20 @@ public class DatosFicheros {
         }
     }
 
-    private static void crearFichero(List<Perfil> perfiles, File archivo){
+    /**
+     * Crea un archivo de perfiles vac o si no existe y agrega un perfil
+     * "DEFAULT" a la lista de perfiles.
+     *
+     * @param perfiles La lista de perfiles actuales del juego.
+     * @param archivo  El archivo de perfiles.
+     */
+    private static void crearFichero(List<Perfil> perfiles, File archivo) {
         try (PrintWriter escritor = new PrintWriter(archivo)) {
             archivo.createNewFile();
             perfiles.add(new Perfil("DEFAULT"));
             escritor.println(perfiles.get(0).toString());
 
-            File carpetaPerfil = new File("./src/VideoJuego/Saves/", perfiles.get(0).getNombre());
+            File carpetaPerfil = new File("./Saves/", perfiles.get(0).getNombre());
             File archivoPartidas = new File(carpetaPerfil, "partidas.txt");
 
             if (!carpetaPerfil.exists()) {
@@ -128,12 +166,8 @@ public class DatosFicheros {
      * @param scanner  El scanner para leer el archivo.
      */
     public static void cargarJuego(List<Perfil> perfiles, Scanner scanner) {
-        File carpetaVideoJuego = new File("./src/VideoJuego");
-        if (!carpetaVideoJuego.exists()) {
-            carpetaVideoJuego.mkdirs();
-        }
 
-        File carpeta = new File(carpetaVideoJuego, "Saves");
+        File carpeta = new File("./Saves");
         if (!carpeta.exists()) {
             carpeta.mkdirs();
         }

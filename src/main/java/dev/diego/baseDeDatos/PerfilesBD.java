@@ -79,6 +79,12 @@ public class PerfilesBD {
         }
     };
 
+    /**
+     * Borra un perfil de la base de datos y reorganiza los IDs de los perfiles.
+     * 
+     * @param scanner  Scanner para leer la entrada del usuario
+     * @param perfiles Lista de perfiles
+     */
     public static void borrarPerfilYReorganizar(Scanner scanner, List<Perfil> perfiles) {
         // Listar los perfiles disponibles
         listarPerfiles();
@@ -167,6 +173,12 @@ public class PerfilesBD {
         return perfiles;
     }
 
+    /**
+     * Obtiene un perfil de la base de datos por su ID.
+     * 
+     * @param perfil El perfil a cargar
+     * @param id     El ID del perfil a cargar
+     */
     public static void obtenerPerfil(Perfil perfil, int id) {
         String sql = "SELECT * FROM perfiles WHERE id = ?";
 
@@ -188,6 +200,12 @@ public class PerfilesBD {
         }
     };
 
+    /**
+     * Obtiene un perfil de la base de datos por su nombre.
+     * 
+     * @param perfil El perfil a cargar
+     * @param nombre El nombre del perfil a cargar
+     */
     public static void obtenerPerfil(Perfil perfil, String nombre) {
         String sql = "SELECT * FROM perfiles WHERE nombre = ?";
 
