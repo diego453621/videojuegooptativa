@@ -10,18 +10,31 @@ import java.sql.SQLException;
  * @author Diego Luengo
  */
 public class ConexionBD {
-    /**
+    // /**
+    //  * URL de la base de datos MySQL.
+    //  */
+    // private static final String URL = "jdbc:mysql://localhost:3306/extremememory";
+    // /**
+    //  * Direccion URL de la base de datos MySQL.
+    //  */
+    // private static final String USUARIO = "root";
+    // /**
+    //  * Contraseña de acceso a la base de datos.
+    //  */
+    // private static final String CLAVE = "Password1234"; // pon aquí tu contraseña si tienes
+
+        /**
      * URL de la base de datos MySQL.
      */
     private static final String URL = "jdbc:mysql://localhost:3306/extremememory";
     /**
      * Direccion URL de la base de datos MySQL.
      */
-    private static final String USUARIO = "root";
+    private static final String USUARIO = "videojuego";
     /**
      * Contraseña de acceso a la base de datos.
      */
-    private static final String CLAVE = "Password1234"; // pon aquí tu contraseña si tienes
+    private static final String CLAVE = "1234"; // pon aquí tu contraseña si tienes
 
     /**
      * Establishes and returns a connection to the database.
