@@ -10,6 +10,13 @@ import dev.diego.GestionDeDatos;
 import dev.diego.Herramientas;
 import dev.diego.Perfil;
 
+/**
+ * Clase que gestiona los perfiles del juego.
+ * 
+ * Permite crear, cargar, mostrar y borrar perfiles.
+ * 
+ * @author Diego Luengo
+ */
 public class PerfilesFicheros {
     /**
      * Borra un perfil de la lista de perfiles.
@@ -53,7 +60,6 @@ public class PerfilesFicheros {
      * 
      * @param scanner  Scanner para leer la opción del usuario
      * @param perfiles Lista de perfiles en la que se busca el perfil a cargar
-     * @return El perfil seleccionado o null si no hay perfiles disponibles
      */
     public static void cargarPerfil(Scanner scanner, List<Perfil> perfiles) {
         Perfil perfilSeleccionado;

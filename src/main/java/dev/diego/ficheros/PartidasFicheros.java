@@ -13,6 +13,14 @@ import dev.diego.Herramientas;
 import dev.diego.Partida;
 import dev.diego.Perfil;
 
+/**
+ * Clase que gestiona la creación y carga de partidas en archivos.
+ * 
+ * Contiene métodos para crear un archivo de partida, cargar partidas guardadas,
+ * mostrar partidas disponibles y guardar partidas en archivos.
+ * 
+ * @author Diego Luengo
+ */
 public class PartidasFicheros {
     /**
      * Crea un archivo de partida en la carpeta de partidas del perfil
@@ -24,16 +32,29 @@ public class PartidasFicheros {
      * @param fechaFormateada      La fecha y hora de inicio de la partida.
      */
     public static void crearArchivoPartida(File archivoPartida, File archivoListaPartidas, String fechaFormateada) {
-
         try (PrintWriter writer = new PrintWriter(new FileOutputStream(archivoListaPartidas, true))) {
             writer.println(fechaFormateada + ";");
+    
+            // Verificar si la carpeta del archivo existe
+            File carpeta = archivoPartida.getParentFile();
+            if (!carpeta.exists()) {
+                if (carpeta.mkdirs()) {
+                    System.out.println("Carpeta creada: " + carpeta.getAbsolutePath());
+                } else {
+                    System.out.println("No se pudo crear la carpeta: " + carpeta.getAbsolutePath());
+                    return;
+                }
+            }
+    
+            // Crear el archivo si no existe
             if (!archivoPartida.exists()) {
                 archivoPartida.createNewFile();
+                System.out.println("Archivo creado: " + archivoPartida.getAbsolutePath());
             }
         } catch (IOException e) {
-            System.out.println("1" + e.getMessage());
+            System.out.println("Error al crear el archivo: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("2" + e.getMessage());
+            System.out.println("Error inesperado: " + e.getMessage());
         }
     }
 
@@ -89,6 +110,15 @@ public class PartidasFicheros {
         return perfilActivo.getPartidas().get(opcion);
     }
 
+    /**
+     * Guarda la partida en el archivo correspondiente y actualiza la lista de
+     * partidas del perfil activo.
+     *
+     * @param archivoPartida       El archivo de la partida a guardar.
+     * @param archivoListaPartidas El archivo de lista de partidas.
+     * @param fechaFormateada      La fecha y hora de inicio de la partida.
+     * @param partida              La partida a guardar.
+     */
     public static void guardarPartidas(File archivoPartida, File archivoListaPartidas, String fechaFormateada,
             Partida partida) {
         try (Scanner lector = new Scanner(archivoListaPartidas)) {
@@ -100,6 +130,7 @@ public class PartidasFicheros {
                 }
             }
             if (!existe) {
+                System.out.println("PRUEBA 1");
                 crearArchivoPartida(archivoPartida, archivoListaPartidas, fechaFormateada);
             } else {
                 System.out.println("La partida ya existe en la lista. Sobrescribiendo el archivo...");

@@ -27,8 +27,7 @@ public class DatosFicheros {
     /**
      * Borra todas las carpetas y archivos relacionados con un perfil del juego.
      * 
-     * @param perfiles     La lista de perfiles actuales del juego.
-     * @param nombrePerfil El nombre del perfil a borrar.
+     * @param directorio La carpeta a borrar.
      */
     public static void borrarCarpetas(File directorio) {
         try {
@@ -43,8 +42,8 @@ public class DatosFicheros {
     /**
      * Borra todas las carpetas y archivos relacionados con un perfil del juego.
      * 
-     * @param perfiles     La lista de perfiles actuales del juego.
-     * @param nombrePerfil El nombre del perfil a borrar.
+     * @param perfiles       La lista de perfiles actuales del juego.
+     * @param directorioUsuario El directorio del usuario a borrar.
      */
     public static void borrarCarpetas(List<Perfil> perfiles, File directorioUsuario) {
         try (FileWriter writer = new FileWriter("./Saves/perfiles.txt")) {

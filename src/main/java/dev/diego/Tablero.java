@@ -108,20 +108,22 @@ public class Tablero {
      *
      * @param fila    Fila a validar.
      * @param columna Columna a validar.
+     * @param minimo   Valor mínimo permitido.
      * @return true si las coordenadas son válidas; false en caso contrario.
      */
     public boolean esNumeroValido(int fila, int columna, int minimo) {
         return (fila >= minimo && fila < dimensiones) && (columna >= minimo && columna < dimensiones);
     }
 
+
     /**
-     * Valida que las coordenadas estén dentro del rango permitido y que la carta
-     * en esa posición aún no haya sido descubierta.
+     * Valida si las coordenadas dadas están dentro del rango permitido y si ya
+     * han sido descubiertas anteriormente.
      *
      * @param fila    Fila a validar.
      * @param columna Columna a validar.
-     * @return true si las coordenadas son válidas y la carta está oculta; false en
-     *         caso contrario.
+     * @param minimo   Valor mínimo permitido.
+     * @return true si las coordenadas son válidas; false en caso contrario.
      */
     public boolean validarCoordenada(int fila, int columna, int minimo) {
         boolean numeroValido = true;

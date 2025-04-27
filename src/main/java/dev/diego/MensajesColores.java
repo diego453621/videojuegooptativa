@@ -78,9 +78,11 @@ public class MensajesColores {
     }
 
     /**
-     * Imprime las instrucciones del juego
+     * Esta funcion imprime la explicacion inicial del juego y pide el sistema de
+     * guardado que se quiere.
      * 
-     * @param scanner Scanner para el pulsa enter para continuar
+     * @param scanner Scanner para leer el sistema de guardado
+     * @return El sistema de guardado elegido por el usuario
      */
     public static int explicacionInicial(Scanner scanner) {
         System.out.println("Al comienzo del juego se mostrara un tablero de 4x4 con cartas ocultas, el objetivo \n" +

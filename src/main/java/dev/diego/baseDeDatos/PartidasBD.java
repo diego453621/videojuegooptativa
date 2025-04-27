@@ -23,8 +23,6 @@ public class PartidasBD {
      * @param partida La partida a insertar.
      * @param perfil  El perfil al que pertenece la partida.
      * @param datos   Los datos de la partida en formato de bytes.
-     * 
-     * @see #cargarPartida(Partida, Perfil)
      */
     public static void insertarPartida(Partida partida, Perfil perfil, byte[] datos) {
         String sql = "INSERT INTO partidas (id, perfil_id, datos) VALUES (?, ?, ?)";

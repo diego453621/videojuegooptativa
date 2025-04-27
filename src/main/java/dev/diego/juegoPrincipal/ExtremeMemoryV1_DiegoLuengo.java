@@ -17,6 +17,11 @@ import dev.diego.Partida;
 import dev.diego.Perfil;
 import dev.diego.Configuracion;
 
+/**
+ * Clase principal del juego Extreme Memory V1.
+ * 
+ * @author Diego Luengo
+ */
 public class ExtremeMemoryV1_DiegoLuengo {
 
     /**

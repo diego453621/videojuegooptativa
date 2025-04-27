@@ -30,6 +30,15 @@ public class Perfil {
     private List<Partida> partidas;
 
 
+    /**
+     * Constructor de un perfil.
+     * 
+     * Crea un perfil nuevo con el nombre y el id especificados y una lista vac a de
+     * partidas.
+     * 
+     * @param nombre El nombre del perfil.
+     * @param id     El identificador del perfil.
+     */
     public Perfil(String nombre, int id) {
         this.nombre = nombre;
         this.id = id;
@@ -73,15 +82,29 @@ public class Perfil {
     }
 
     
-
+    /**
+     * Obtiene el identificador de este perfil.
+     *
+     * @return El id del perfil
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Cambia el identificador de este perfil.
+     *
+     * @param id El nuevo id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Cambia la lista de partidas guardadas en este perfil.
+     *
+     * @param partidas La nueva lista de partidas
+     */
     public void setPartidas(List<Partida> partidas) {
         this.partidas = partidas;
     }
@@ -105,13 +128,11 @@ public class Perfil {
     }
 
     /**
-     * Carga las partidas especificadas en el perfil.
-     *
-     * Este m todo carga las partidas especificadas en el par metro
-     * nombresPartidas en el perfil. Si una partida no existe, no se
-     * a ade a la lista de partidas del perfil.
+     * Carga las partidas guardadas en el perfil a partir de los nombres de las
+     * partidas y la ruta del perfil.
      *
      * @param nombresPartidas Los nombres de las partidas a cargar.
+     * @param rutaPerfil      La ruta del perfil donde se encuentran las partidas.
      */
     public void cargarPartidas(String[] nombresPartidas, File rutaPerfil) {
         for (int i = 0; i < nombresPartidas.length; i++) {

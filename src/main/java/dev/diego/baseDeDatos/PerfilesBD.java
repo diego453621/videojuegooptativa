@@ -12,6 +12,11 @@ import dev.diego.GestionDeDatos;
 import dev.diego.Perfil;
 import dev.diego.Herramientas;
 
+/**
+ * Clase que gestiona los perfiles en la base de datos.
+ *
+ * @author Diego Luengo
+ */
 public class PerfilesBD {
 
     /**
@@ -38,7 +43,8 @@ public class PerfilesBD {
     /**
      * Inserta un perfil en la base de datos.
      *
-     * @param perfil El perfil a insertar
+     * @param perfil  El perfil a insertar
+     * @param perfiles La lista de perfiles
      */
     public static void insertarPerfil(Perfil perfil, List<Perfil> perfiles) {
         String sql = "INSERT INTO perfiles (nombre, id) VALUES (?, ?)";
@@ -58,10 +64,12 @@ public class PerfilesBD {
         }
     };
 
+    
     /**
      * Borra un perfil de la base de datos.
      * 
-     * @param perfil El perfil a borrar
+     * @param perfil  El perfil a borrar
+     * @param perfiles La lista de perfiles
      */
     public static void borrarPerfil(Perfil perfil, List<Perfil> perfiles) {
         String sql = "DELETE FROM perfiles WHERE nombre = ?";
@@ -149,7 +157,7 @@ public class PerfilesBD {
     /**
      * Obtiene la lista de perfiles de la base de datos.
      * 
-     * @param perfiles La lista donde se guardan los perfiles.
+     * @return La lista de perfiles
      */
     public static List<Perfil> obtenerPerfiles() {
         String sql = "SELECT * FROM perfiles";
@@ -227,6 +235,10 @@ public class PerfilesBD {
         }
     };
 
+    /**
+     * Lista todos los perfiles en la base de datos.
+     * 
+     */
     public static void listarPerfiles() {
         String sql = "SELECT * FROM perfiles";
 
@@ -244,6 +256,12 @@ public class PerfilesBD {
         }
     }
 
+    /**
+     * Carga un perfil de la base de datos y lo establece como activo.
+     * 
+     * @param perfiles Lista de perfiles
+     * @param scanner  Scanner para leer la entrada del usuario
+     */
     public static void cargarPerfil(List<Perfil> perfiles, Scanner scanner) {
         listarPerfiles();
 

@@ -60,6 +60,13 @@ public class Partida implements Serializable {
      */
     private int maxIntentos;
 
+    /**
+     * Constructor para inicializar una nueva partida con la fecha, hora de inicio,
+     * número de aciertos y el máximo de intentos permitidos.
+     * 
+     * @param aciertos    El número de aciertos iniciales.
+     * @param maxIntentos El número máximo de intentos permitidos en la partida.
+     */
     public Partida(int aciertos, int maxIntentos) {
         this.fecha = LocalDate.now();
         this.horaInicio = LocalTime.now();
@@ -105,6 +112,11 @@ public class Partida implements Serializable {
         this.fecha = fecha;
     }
 
+    /**
+     * Obtiene la fecha y hora en la que se inicio esta partida.
+     *
+     * @return La fecha y hora en la que se inicio esta partida.
+     */
     public LocalDateTime getFechaHoraInicio() {
         return fechaHoraInicio;
     }
@@ -269,6 +281,11 @@ public class Partida implements Serializable {
         }
     }
 
+    /**
+     * Guarda esta partida en un array de bytes.
+     *
+     * @return Un array de bytes que representa la partida.
+     */
     public byte[] guardarPartidaByte() {
         byte[] bytes = null;
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream();

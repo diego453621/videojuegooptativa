@@ -10,6 +10,13 @@ import java.util.regex.Pattern;
 public class Herramientas {
 
 
+    /**
+     * Esta funcion sirve para comprobar si una cadena cumple con un patron
+     * 
+     * @param patron El patron que tiene que cumplir la cadena
+     * @param cadena La cadena a comprobar
+     * @return Devuelve true si cumple el patron, false en caso contrario
+     */
     public static boolean comprobarCadena(String patron, String cadena){
         Pattern p = Pattern.compile(patron);
         Matcher m = p.matcher(cadena);
