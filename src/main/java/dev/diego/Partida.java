@@ -241,6 +241,12 @@ public class Partida implements Serializable {
         }
     }
 
+    /**
+     * Lee una partida desde un array de bytes y la devuelve.
+     *
+     * @param bytes El array de bytes que contiene la partida a leer.
+     * @return La partida leida, o null si no se ha podido leer.
+     */
     public static Partida leerPartidaByte(byte[] bytes) {
         try (ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
                 ObjectInputStream flujoEntrada = new ObjectInputStream(bais)) {

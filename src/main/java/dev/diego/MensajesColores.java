@@ -1,5 +1,7 @@
 package dev.diego;
 
+import java.util.Scanner;
+
 /**
  * Clase que proporciona secuencias ANSI de colores para la consola y mensajes.
  */
@@ -73,6 +75,18 @@ public class MensajesColores {
                 "\\__/ /_/\\_\\\\__|_|  \\___|_| |_| |_|\\___| \\/    \\/\\___|_| |_| |_|\\___/|_|   \\__, |        \n"
                 +
                 "                                                                          |___/  \n" + RESET);
+    }
+
+    /**
+     * Imprime las instrucciones del juego
+     * 
+     * @param scanner Scanner para el pulsa enter para continuar
+     */
+    public static int explicacionInicial(Scanner scanner) {
+        System.out.println("Al comienzo del juego se mostrara un tablero de 4x4 con cartas ocultas, el objetivo \n" +
+                "del juego es revelar las cartas mientras se encuentran las parejas \n Elije el sistema de guardado \n"
+                + "1. Guardar en Archivos" + "\n" + "2. Guardar en base de datos" + "\n");
+        return Herramientas.pedirNumeroEntero(scanner, 1, 2);
     }
 
     /**

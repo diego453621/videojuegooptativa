@@ -1,13 +1,13 @@
-package dev.diego;
+package dev.diego.baseDeDatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionBD {
-    private static final String URL = "jdbc:mysql://localhost:3306/escuela";
+    private static final String URL = "jdbc:mysql://localhost:3306/extremememory";
     private static final String USUARIO = "root";
-    private static final String CLAVE = "admin"; // pon aquí tu contraseña si tienes
+    private static final String CLAVE = "781Machado.#@"; // pon aquí tu contraseña si tienes
 
     public static Connection obtenerConexion() throws SQLException {
         return DriverManager.getConnection(URL, USUARIO, CLAVE);

@@ -17,9 +17,24 @@ public class Perfil {
     private String nombre;
 
     /**
+     * El identificador del perfil.
+     *
+     * El identificador se utiliza para identificar el perfil en el sistema de
+     * guardado de partidas.
+     */
+    private int id;
+
+    /**
      * La lista de partidas guardadas en el perfil.
      */
     private List<Partida> partidas;
+
+
+    public Perfil(String nombre, int id) {
+        this.nombre = nombre;
+        this.id = id;
+        this.partidas = new ArrayList<>();
+    }
 
     /**
      * Constructor de un perfil.
@@ -57,6 +72,20 @@ public class Perfil {
         this.nombre = nombre;
     }
 
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPartidas(List<Partida> partidas) {
+        this.partidas = partidas;
+    }
+
     /**
      * Añade la partida pasada como par metro a la lista de partidas del perfil.
      *
@@ -84,7 +113,7 @@ public class Perfil {
      *
      * @param nombresPartidas Los nombres de las partidas a cargar.
      */
-    public void cargarPartidas(String[] nombresPartidas, File rutaPerfil){
+    public void cargarPartidas(String[] nombresPartidas, File rutaPerfil) {
         for (int i = 0; i < nombresPartidas.length; i++) {
             File rutaPartida = new File(rutaPerfil, "/" + nombresPartidas[i] + ".txt");
             Partida partida = Partida.leerPartida(rutaPartida);

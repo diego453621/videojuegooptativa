@@ -18,10 +18,10 @@ import dev.diego.Perfil;
 import dev.diego.Configuracion;
 
 public class ExtremeMemoryV1_DiegoLuengo {
-        private static void cambiarDosCartas(Tablero tablero, Tablero tableroOculto, int[] filaColumna1, int[] filaColumna2,
+    private static void cambiarDosCartas(Tablero tablero, Tablero tableroOculto, int[] filaColumna1, int[] filaColumna2,
             String color) {
-        revelarCarta(tablero, tableroOculto, filaColumna1, color);
-        revelarCarta(tablero, tableroOculto, filaColumna2, color);
+        revelarCarta(tableroOculto, tablero, filaColumna1, color);
+        revelarCarta(tableroOculto, tablero, filaColumna2, color);
         tableroOculto.mostrarTablero();
     }
 
@@ -119,7 +119,7 @@ public class ExtremeMemoryV1_DiegoLuengo {
         System.out.println();
         boolean partidaGuardada = false;
 
-        GestionDePartidas.crearArchivoPartida(archivoPartida, archivoListaPartidas, fechaFormateada);
+        GestionDePartidas.guardarPartida(archivoPartida, archivoListaPartidas, fechaFormateada, partida);
         partida.guardarPartida(archivoPartida);
 
         do {
@@ -229,7 +229,7 @@ public class ExtremeMemoryV1_DiegoLuengo {
      * @param filaColumna   Cordenadas de la carta a revelar.
      * @param color         Color que se va a asignar a la carta.
      */
-    private static void revelarCarta(Tablero tablero, Tablero tableroOculto, int[] filaColumna, String color) {
+    private static void revelarCarta(Tablero tableroOculto, Tablero tablero, int[] filaColumna, String color) {
         tableroOculto.cambiarCartaConColor(filaColumna[0], filaColumna[1],
                 tablero.recogerCarta(filaColumna[0], filaColumna[1]), color);
     }
@@ -258,17 +258,6 @@ public class ExtremeMemoryV1_DiegoLuengo {
             System.out.println("¡GANASTE!");
         else
             System.out.println("Has perdido");
-    }
-
-    /**
-     * Imprime las instrucciones del juego
-     * 
-     * @param scanner Scanner para el pulsa enter para continuar
-     */
-    private static void explicacionInicial(Scanner scanner) {
-        System.out.println("Al comienzo del juego se mostrara un tablero de 4x4 con cartas ocultas, el objetivo \n" +
-                "del juego es revelar las cartas mientras se encuentran las parejas \nPULSE 'ENTER' PARA CONTINUAR");
-        scanner.nextLine();
     }
 
     /**
@@ -310,17 +299,18 @@ public class ExtremeMemoryV1_DiegoLuengo {
      * @param scanner Scanner para leer la entrada del usuario.
      */
     private static void mostrarMenu(Scanner scanner) {
+        MensajesColores.mostrarTitulo(MensajesColores.getColorRojo(), MensajesColores.reset());
+        GestionDeDatos.setSistemaGuardado(MensajesColores.explicacionInicial(scanner));
         List<Perfil> perfiles = new ArrayList<>();
         GestionDeDatos.cargarJuego(perfiles, scanner);
-        Perfil perfilActivo = perfiles.get(0);
+        GestionDeDatos.setPerfilActivo(perfiles.get(0));
+        Perfil perfilActivo = GestionDeDatos.getPerfilActivo();
         GestionDePartidas.cargarPartidas(perfiles);
         boolean iniciado = true;
 
         do {
             int opciones = 0;
             do {
-                MensajesColores.mostrarTitulo(MensajesColores.getColorRojo(), MensajesColores.reset());
-                explicacionInicial(scanner);
                 System.out.println("\n1: INICIAR");
                 System.out.println("2: Cargar Partida");
                 System.out.println("3: Configuracion");
@@ -337,7 +327,11 @@ public class ExtremeMemoryV1_DiegoLuengo {
                         MensajesColores.getColorAmarillo(), perfilActivo,
                         GestionDePartidas.cargarPartida(scanner, perfilActivo));
                 case 3 -> Configuracion.ajustes(scanner);
-                case 4 -> perfilActivo = GestionDePerfiles.gestionarPerfiles(scanner, perfiles, perfilActivo);
+                case 4 -> {
+                    GestionDePerfiles.gestionarPerfiles(scanner, perfiles, perfilActivo);
+                    // GestionDeDatos.setPerfilActivo(GestionDePerfiles.gestionarPerfiles(scanner, perfiles, perfilActivo));
+                    perfilActivo = GestionDeDatos.getPerfilActivo();
+                } 
                 case 5 -> perfilActivo.mostrarPartidas();
                 default -> iniciado = false;
             }
