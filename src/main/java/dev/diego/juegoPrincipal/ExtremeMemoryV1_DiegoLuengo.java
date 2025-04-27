@@ -348,7 +348,7 @@ public class ExtremeMemoryV1_DiegoLuengo {
                 case 5 -> perfilActivo.mostrarPartidas();
                 default -> iniciado = false;
             }
-        } while (iniciado == true);
+        } while (iniciado);
     }
 
     /**
