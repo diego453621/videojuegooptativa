@@ -8,7 +8,7 @@ drop table if exists Perfiles;
 
 create table if not exists Perfiles (
 	ID int auto_increment not null,
-    Nombre varchar(50) not null,
+    Nombre varchar(50) not null unique,
     constraint PK_ID primary key (ID)
 );
 

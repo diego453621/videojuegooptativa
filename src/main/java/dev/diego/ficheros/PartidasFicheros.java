@@ -91,7 +91,6 @@ public class PartidasFicheros {
 
     public static void guardarPartidas(File archivoPartida, File archivoListaPartidas, String fechaFormateada,
             Partida partida) {
-
         try (Scanner lector = new Scanner(archivoListaPartidas)) {
             boolean existe = false;
             while (lector.hasNextLine() && !existe) {
@@ -102,11 +101,14 @@ public class PartidasFicheros {
             }
             if (!existe) {
                 crearArchivoPartida(archivoPartida, archivoListaPartidas, fechaFormateada);
+            } else {
+                System.out.println("La partida ya existe en la lista. Sobrescribiendo el archivo...");
             }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo");
         }
 
+        // Sobrescribir o guardar la partida
         partida.guardarPartida(archivoPartida);
     }
 }

@@ -103,6 +103,13 @@ public class Tablero {
         return RESET;
     }
 
+    /**
+     * Valida si las coordenadas dadas están dentro del rango permitido.
+     *
+     * @param fila    Fila a validar.
+     * @param columna Columna a validar.
+     * @return true si las coordenadas son válidas; false en caso contrario.
+     */
     public boolean esNumeroValido(int fila, int columna, int minimo) {
         return (fila >= minimo && fila < dimensiones) && (columna >= minimo && columna < dimensiones);
     }
