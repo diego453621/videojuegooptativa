@@ -25,7 +25,7 @@ public class PerfilesBD {
         try (Connection conn = ConexionBD.obtenerConexion();
                 PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, perfil.getNombre());
-            statement.setInt(2, 1);
+            statement.setInt(2, perfil.getId());
 
             int filas = statement.executeUpdate();
 
