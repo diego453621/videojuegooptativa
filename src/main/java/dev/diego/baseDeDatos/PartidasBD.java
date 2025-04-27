@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import dev.diego.GestionDeDatos;
+import dev.diego.Herramientas;
 import dev.diego.Partida;
 import dev.diego.Perfil;
 
@@ -50,6 +51,7 @@ public class PartidasBD {
         try (Connection conn = ConexionBD.obtenerConexion();
                 PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setBytes(1, datos);
+            System.out.println(partida.getFechaHoraInicio().toString().replace(":", "-"));
             statement.setString(2, partida.getFechaHoraInicio().toString().replace(":", "-"));
             statement.setInt(3, perfil.getId());
 
@@ -147,31 +149,51 @@ public class PartidasBD {
         }
     }
 
-    public static void listarPartidas() {
-        String sql = "SELECT * FROM partidas where perfil_id = ?";
+    public static List<Partida> listarPartidas() {
+        String sql = "SELECT * FROM partidas WHERE perfil_id = ?";
         List<Partida> listaPartidas = new ArrayList<>();
 
         try (Connection conn = ConexionBD.obtenerConexion();
                 PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, GestionDeDatos.getPerfilActivo().getId());
             try (ResultSet resultSet = statement.executeQuery()) {
+                int index = 1; // Contador para numerar las partidas
                 while (resultSet.next()) {
                     String id = resultSet.getString("id");
                     int perfilId = resultSet.getInt("perfil_id");
                     byte[] datos = resultSet.getBytes("datos");
-                    System.out.println("Partida: " + id + " - Perfil: " + perfilId);
+
+                    // Mostrar la partida con un número a la izquierda
+                    System.out.println(index + ". Partida: " + id + " - Perfil: " + perfilId);
+
+                    // Agregar la partida a la lista
                     listaPartidas.add(Partida.leerPartidaByte(datos));
+                    index++;
                 }
             }
         } catch (SQLException e) {
             System.out.println("Error al obtener las partidas: " + e.getMessage());
         }
+
+        return listaPartidas;
     }
 
     public static Partida listarYCargarPartida(Scanner scanner) {
-        listarPartidas();
-        System.out.println("Introduce el id de la partida a cargar: ");
-        String idPartida = scanner.nextLine();
-        return cargarPartida(idPartida, GestionDeDatos.getPerfilActivo());
+        // Listar las partidas y obtener la lista
+        List<Partida> listaPartidas = listarPartidas();
+        Partida cargada = null;
+
+        if (listaPartidas.isEmpty()) {
+            System.out.println("No hay partidas disponibles para cargar.");
+        } else {
+            // Pedir al usuario que elija una partida por su número
+            System.out.println("Introduce el número de la partida a cargar: ");
+            int opcion = Herramientas.pedirNumeroEntero(scanner, "Selecciona una partida válida", 1,
+                    listaPartidas.size());
+
+            // Cargar la partida seleccionada
+            cargada = listaPartidas.get(opcion - 1); // Restar 1 porque las listas empiezan en 0
+        }
+        return cargada;
     }
 }

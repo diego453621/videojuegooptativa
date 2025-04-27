@@ -110,8 +110,8 @@ public class ExtremeMemoryV1_DiegoLuengo {
         Partida partida = new Partida(tablero, tableroOculto, 0, Configuracion.getMaxIntentos());
         String fechaFormateada = partida.getFechaHoraInicio().toString().replace(":", "-");
         File archivoPartida = new File(
-                "./src/VideoJuego/Saves/" + perfil.getNombre().toUpperCase() + "/Partidas/" + fechaFormateada + ".txt");
-        File archivoListaPartidas = new File("./src/VideoJuego/Saves/", perfil.getNombre() + "/partidas.txt");
+                "./Saves/" + perfil.getNombre().toUpperCase() + "/Partidas/" + fechaFormateada + ".txt");
+        File archivoListaPartidas = new File("./Saves/", perfil.getNombre() + "/partidas.txt");
 
         perfil.agregarPartida(partida);
 
@@ -150,7 +150,7 @@ public class ExtremeMemoryV1_DiegoLuengo {
             }
         } while (!esJuegoTerminado(partida) && !partidaGuardada);
         if (partidaGuardada) {
-            partida.guardarPartida(archivoPartida);
+            GestionDePartidas.guardarPartida(archivoPartida, archivoListaPartidas, fechaFormateada, partida);
         }
 
         partida.setHoraFin(LocalTime.now());
@@ -179,7 +179,8 @@ public class ExtremeMemoryV1_DiegoLuengo {
         tableroOculto.setTablero(partida.getTableroOculto());
         String fechaFormateada = partida.getFechaHoraInicio().toString().replace(":", "-");
         File archivoPartida = new File(
-                "./src/VideoJuego/Saves/" + perfil.getNombre().toUpperCase() + "/Partidas/" + fechaFormateada + ".txt");
+                "./Saves/" + perfil.getNombre().toUpperCase() + "/Partidas/" + fechaFormateada + ".txt");
+        File archivoListaPartidas = new File("./Saves/", perfil.getNombre() + "/partidas.txt");
 
         perfil.agregarPartida(partida);
 
@@ -215,7 +216,7 @@ public class ExtremeMemoryV1_DiegoLuengo {
         } while (!esJuegoTerminado(partida) && !partidaGuardada);
 
         if (partidaGuardada) {
-            partida.guardarPartida(archivoPartida);
+            GestionDePartidas.guardarPartida(archivoPartida, archivoListaPartidas, fechaFormateada, partida);
         }
         partida.setHoraFin(LocalTime.now());
         mostrarResultado(partida);
@@ -329,9 +330,10 @@ public class ExtremeMemoryV1_DiegoLuengo {
                 case 3 -> Configuracion.ajustes(scanner);
                 case 4 -> {
                     GestionDePerfiles.gestionarPerfiles(scanner, perfiles, perfilActivo);
-                    // GestionDeDatos.setPerfilActivo(GestionDePerfiles.gestionarPerfiles(scanner, perfiles, perfilActivo));
+                    // GestionDeDatos.setPerfilActivo(GestionDePerfiles.gestionarPerfiles(scanner,
+                    // perfiles, perfilActivo));
                     perfilActivo = GestionDeDatos.getPerfilActivo();
-                } 
+                }
                 case 5 -> perfilActivo.mostrarPartidas();
                 default -> iniciado = false;
             }
