@@ -328,7 +328,7 @@ C:.
 2. Crear la base de datos con el script ubicado en  **./src/main/java/dev/diego/baseDeDatos**
 3. Cambiar las credenciales de la base de datos en el archivo ubicado en **./src/main/java/dev/diego/baseDeDatos/ConexionBD.java**
 4. Asegúrate de que JDK 21 esté correctamente configurado.
-5. Ve a la carpeta `src/VideoJuego/` y ejecuta el archivo `ExtremeMemoryV1_DiegoLuengo.java`.
+5. Ve a la carpeta `src/main/java/dev/diego/juegoPrincipal` y ejecuta el archivo `ExtremeMemoryV1_DiegoLuengo.java`.
 6. Compila y ejecuta el programa:
 
 ## Funcionalidades Principales
